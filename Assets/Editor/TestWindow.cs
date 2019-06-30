@@ -47,24 +47,26 @@ public class TestWindow : EditorWindow {
     }
 
     async void Update () {
-        if (cnt % 1000 == 1 && flag) {
-            flag = false;
+        if (position.width > 0 && position.height > 0) {
+            if (cnt % 1000 == 1 && flag) {
+                flag = false;
 
-            var a = position;
-            var oldpos = position;
-            a.width = 0;
-            a.height = 0;
-            position = a;
+                var a = position;
+                var oldpos = position;
+                a.width = 0;
+                a.height = 0;
+                position = a;
 
-            await TimeSpan.FromSeconds (0.002);
+                await TimeSpan.FromSeconds (0.002);
 
-            tex = GrabScreenSwatch (oldpos);
+                tex = GrabScreenSwatch (oldpos);
 
-            position = oldpos;
-            flag = true;
-        }
-        if (flag) {
-            cnt++;
+                position = oldpos;
+                flag = true;
+            }
+            if (flag) {
+                cnt++;
+            }
         }
     }
 
